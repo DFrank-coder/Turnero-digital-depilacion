@@ -1,0 +1,32 @@
+body {
+  
+  background-color:rgb(199, 161, 184);
+  padding: 40px;
+}
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+form label {
+  display: block;
+  margin-top: 8px;
+}
+form input, button {
+  width: 95%;
+  padding: 3px;
+  margin-top: 5px;
+}
+button {
+  background-color:rgb(224, 20, 133);
+  color: white;
+  border-radius: 10px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+button:hover {
+  background-color:rgb(240, 111, 201);
+}

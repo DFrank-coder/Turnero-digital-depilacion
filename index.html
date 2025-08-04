@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turnero de Depilación</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Solicitá tu Turno</h1>
+  
+    <form id="formTurno">
+  <label for="nombre">Nombre y apellido:</label>
+  <input type="text" id="nombre" required />
+
+  <label for="fecha">Fecha:</label>
+  <input type="date" id="fecha" required />
+
+  <label for="hora">Hora:</label>
+  <input type="time" id="hora" required />
+
+  <button type="submit">Agendar Turno</button>
+</form>
+
+    <p id="estadoTurno"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <script src="script.js"></script>
+  
+</body>
+</html>

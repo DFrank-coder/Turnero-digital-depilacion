@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Turnos Agendados - Admin</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    table { width: 100%; text-align: center; border-collapse: collapse; }
+    th, td { padding: 10px; border: 1px solid #ddd; }
+    button { background: #dc3545; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #b52a36; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Turnos Agendados</h1>
+    <table id="tablaTurnos">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Creado</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA9vexJ7U2syDANbGslmksnnn2aBzQpfa0",
+      authDomain: "turnerodepilacion.firebaseapp.com",
+      databaseURL: "https://turnerodepilacion-default-rtdb.firebaseio.com",
+      projectId: "turnerodepilacion",
+      storageBucket: "turnerodepilacion.appspot.com",
+      messagingSenderId: "409819957597",
+      appId: "1:409819957597:web:846aa9d3c3d788c296c0b4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const tabla = document.querySelector("#tablaTurnos tbody");
+
+    db.ref("turnos").on("value", (snapshot) => {
+      tabla.innerHTML = "";
+      snapshot.forEach((childSnapshot) => {
+        const turno = childSnapshot.val();
+        const key = childSnapshot.key;
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${turno.nombre || "Sin nombre"}</td>
+          <td>${turno.fecha}</td>
+          <td>${turno.hora}</td>
+          <td>${new Date(turno.creado).toLocaleString()}</td>
+          <td><button onclick="eliminarTurno('${key}')">Eliminar</button></td>
+        `;
+        tabla.appendChild(fila);
+      });
+    });
+
+    function eliminarTurno(id) {
+      if (confirm("¿Estás seguro de eliminar este turno?")) {
+        db.ref("turnos/" + id).remove()
+          .then(() => alert("✅ Turno eliminado"))
+          .catch((err) => alert("❌ Error: " + err));
+      }
+    }
+  </script>
+</body>
+</html>
