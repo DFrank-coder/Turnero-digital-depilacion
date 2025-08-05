@@ -1,5 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
+const apiKey = process.env.GOOGLE_API_KEY;
+console.log("Tu clave segura es:", apiKey);
+
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyA9vexJ7U2syDANbGslmksnnn2aBzQpfa0",
+  apiKey:"apiKey",
   authDomain: "turnerodepilacion.firebaseapp.com",
   databaseURL: "https://turnerodepilacion-default-rtdb.firebaseio.com",
   projectId: "turnerodepilacion",
